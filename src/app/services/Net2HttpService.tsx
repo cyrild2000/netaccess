@@ -32,6 +32,17 @@ class Net2HttpClient {
         return await response.json();
     }
 
+    async getDepartments(token: string) {
+        const response = await fetch(ctx.srv + "/api/v1/departments", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "applicationi/json",
+                    "Authorization" : "bearer " + token
+                },
+        });
+        return await response.json();
+    }
+
 }//end of Net2HttpClient
 
 export const Net2Client = new Net2HttpClient();

@@ -3,3 +3,8 @@ export interface UserI {
     firstName: string,
     lastName: string
 }
+
+export interface DepartmentI {
+    id: string,
+    name: string
+}

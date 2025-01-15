@@ -11,7 +11,7 @@ class Net2Context {
         this.password = password;
         this.clientId = clientId;
     }
-}
+}//end of Net2Context
 
 export { Net2Context };
 export const ctx = new Net2Context("your_server_name", "your_api_username", "your_api_pwd", "your_client_id");

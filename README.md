@@ -1,6 +1,13 @@
 ## Net Access
 
-Browser app to manage Users and Badges in Net Access Software
+Browser app to manage Users and Badges in Net2 from Paxton Sofware
+
+You need to fill in the file Net2Ctx.tsx on line 17 :
+server name in srv
+username in username
+password (api key ) in password
+clientId in clientId
+The file Net2Ctx.tsx is in the directory services under src/app dir
 
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
