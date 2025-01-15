@@ -17,6 +17,21 @@ class Net2HttpClient {
         }
         return await response.json();
     }
-}
+
+    /*
+    * getUsers : retrives all the user from the service
+    */
+    async getUsers(token: string) {
+        const response = await fetch(ctx.srv + "/api/v1/users", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "applicationi/json",
+                    "Authorization" : "bearer " + token
+                },
+        });
+        return await response.json();
+    }
+
+}//end of Net2HttpClient
 
 export const Net2Client = new Net2HttpClient();
