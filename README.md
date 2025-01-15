@@ -9,6 +9,9 @@ password (api key ) in password
 clientId in clientId
 The file Net2Ctx.tsx is in the directory services under src/app dir
 
+This project uses Next React and Typescript language
+CSS powered by Bootstrap
+
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
