@@ -3,6 +3,10 @@ import { useState, useEffect } from "react";
 import { Net2Client } from "../services/Net2HttpService";
 import { UserI } from "../types/types";
 
+/*
+* List all the users
+*/
+
 export default function NetAccessUsers() {
 
     const [users, setUsers] = useState<UserI[]>([]);
@@ -23,7 +27,7 @@ export default function NetAccessUsers() {
 
     return(
         <ul>
-        {users.map((user) => <li key={user.id}>{user.firstName}</li>)}
+        {users.map((user) => <li key={user.id}>{user.firstName} {user.lastName}</li>)}
         </ul>
     )
     
