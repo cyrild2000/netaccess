@@ -19,19 +19,50 @@ class Net2HttpClient {
     }
 
     /*
-    * getUsers : retrives all the user from the service
+    * getUsers : retrives all the users from the service
     */
     async getUsers(token: string) {
-        const response = await fetch(ctx.srv + "/api/v1/users", {
-                method: "GET",
-                headers: {
-                    "Content-Type": "applicationi/json",
-                    "Authorization" : "bearer " + token
-                },
-        });
-        return await response.json();
+        try {
+            const response = await fetch(ctx.srv + "/api/v1/users", {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "applicationi/json",
+                        "Authorization" : "bearer " + token
+                    },
+            });
+            if(!response.ok) {
+                throw new Error("getUsers - Error Fetching data : " + response.statusText);
+            }
+            return await response.json();
+        } catch(error) {
+            console.log(error);
+        }
     }
 
+     /*
+    * getUserById : retrives a unique user
+    */
+     async getUserById(id: string, token: string) {
+        try {
+            const response = await fetch(ctx.srv + "/api/v1/users/" + id, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "applicationi/json",
+                        "Authorization" : "bearer " + token
+                    },
+            });
+            if(!response.ok) {
+                throw new Error("getUsers - Error Fetching data : " + response.statusText);
+            }
+            return await response.json();
+        } catch(error) {
+            console.log(error);
+        }
+    }
+
+    /*
+    * getDepartments : retrives all the departments from the service
+    */
     async getDepartments(token: string) {
         const response = await fetch(ctx.srv + "/api/v1/departments", {
                 method: "GET",

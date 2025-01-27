@@ -1,7 +1,11 @@
 'use client'
-import { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEventHandler } from "react";
 import { Net2Client } from "../services/Net2HttpService";
 import { UserI } from "../types/types";
+import DataPage from "./DataPage";
+import UserSearchBar from "./UserSearchBar";
+import DataTable from "./DataPage";
+import Test from "./test";
 
 /*
 * List all the users
@@ -9,26 +13,24 @@ import { UserI } from "../types/types";
 
 export default function NetAccessUsers() {
 
+    
     const [users, setUsers] = useState<UserI[]>([]);
 
-    useEffect(() => {
-        const getUsers = () => {
+    useEffect(
+        () => {
             Net2Client.getToken()
-            .then((data) => {
-                console.log(data.access_token);
-                Net2Client.getUsers(data.access_token).then((result) => {
-                    setUsers(result);
-                    
-                })
-            });
-        };
-        getUsers();
-    }, []);
+                    .then((data) => {
+                        Net2Client.getUsers(data.access_token).then((result) => {
+                            setUsers(result);
+                        })
+                        
+                    });
+        }, []);
 
     return(
-        <ul>
-        {users.map((user) => <li key={user.id}>{user.firstName} {user.lastName}</li>)}
-        </ul>
+        <div className="container">
+            <DataPage data={users} pageSize={10} />
+        </div>
     )
     
 }
