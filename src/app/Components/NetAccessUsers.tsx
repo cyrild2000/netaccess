@@ -5,7 +5,6 @@ import { UserI } from "../types/types";
 import DataPage from "./DataPage";
 import UserSearchBar from "./UserSearchBar";
 import DataTable from "./DataPage";
-import Test from "./test";
 
 /*
 * List all the users
@@ -29,6 +28,7 @@ export default function NetAccessUsers() {
 
     return(
         <div className="container">
+                    <h1>Net 2 - Utilisateurs</h1>
             <DataPage data={users} pageSize={10} />
         </div>
     )

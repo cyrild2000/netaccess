@@ -27,8 +27,9 @@ export default function NetAccessDepartments(){
 
     return (
         <div className="container">
+            <h1>Liste des départements</h1>
           <ul className="list-group list-group-flush">
-          {departments.map((dpt) => <li key={dpt.id}>{dpt.name}</li>)}
+          {departments.map((dpt) => <li key={dpt.id} className="list-group-item">{dpt.name}</li>)}
           </ul>
         </div>
       );

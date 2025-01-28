@@ -60,6 +60,69 @@ class Net2HttpClient {
         }
     }
 
+     /*
+    * getUserTokens : retrives tokens for a user
+    */
+     async getUserTokens(id: string, token: string) {
+        try {
+            const response = await fetch(ctx.srv + "/api/v1/users/" + id + "/tokens", {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "applicationi/json",
+                        "Authorization" : "bearer " + token
+                    },
+            });
+            if(!response.ok) {
+                throw new Error("getUserTokens - Error Fetching data : " + response.statusText);
+            }
+            return await response.json();
+        } catch(error) {
+            console.log(error);
+        }
+    }
+
+     /*
+    * getUserDepartments : retrives Departments for a user
+    */
+     async getUserDepartments(id: string, token: string) {
+        try {
+            const response = await fetch(ctx.srv + "/api/v1/users/" + id + "/departments", {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "applicationi/json",
+                        "Authorization" : "bearer " + token
+                    },
+            });
+            if(!response.ok) {
+                throw new Error("getUserDepartments - Error Fetching data : " + response.statusText);
+            }
+            return await response.json();
+        } catch(error) {
+            console.log(error);
+        }
+    }
+
+     /*
+    * getUserDoorPermissionSet : retrives DoorPermissionSet for a user
+    */
+     async getUserDoorPermissionSet(id: string, token: string) {
+        try {
+            const response = await fetch(ctx.srv + "/api/v1/users/" + id + "/doorpermissionset", {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "applicationi/json",
+                        "Authorization" : "bearer " + token
+                    },
+            });
+            if(!response.ok) {
+                throw new Error("getUserDepartments - Error Fetching data : " + response.statusText);
+            }
+            return await response.json();
+        } catch(error) {
+            console.log(error);
+        }
+    }
+
     /*
     * getDepartments : retrives all the departments from the service
     */
