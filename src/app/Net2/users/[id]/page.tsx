@@ -29,12 +29,12 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
 
     return (
         <div>
-        <h1>Net 2 - Utilisateurs</h1>
+
         <h1>{user.firstName} {user.lastName}</h1>
         <ul>{department.map((dpt, index) => <li key={index}>{dpt.name}</li>)}</ul>
         <h2>Nombre de badges : {badges.length > 0 ? badges.length: "Pas de badge pour l'utilisateur"}</h2>
         <ul>
-            {badges.map((badge, index) => <li key={index}><Badge id={index} badge={badge} onClick={() => handleBadge(badge.id)} /></li>)}
+            {badges.map((badge, index) => <li key={index}><Badge badge={badge} onClick={() => handleBadge(badge.id)} /></li>)}
         </ul>
         </div>
     )
