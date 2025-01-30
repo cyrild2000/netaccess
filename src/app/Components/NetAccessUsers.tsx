@@ -28,7 +28,7 @@ export default function NetAccessUsers() {
 
     return(
         <div className="container">
-                    <h1>Net 2 - Utilisateurs</h1>
+            <h1>Net 2 - Users List</h1>
             <DataPage data={users} pageSize={10} />
         </div>
     )

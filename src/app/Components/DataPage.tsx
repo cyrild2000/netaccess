@@ -56,10 +56,10 @@ export default function DataTable ({ data, pageSize = 10 }: {data:UserI[], pageS
       />
       <ul className="nav justify-content-end">
             <li><p>&nbsp;&nbsp;Page : <b>{currentPage}</b> sur <b>{nbOfPages}</b>&nbsp;</p></li>
-            <li><button className="btn btn-primary" onClick={() => handlePageChange(1)}>Premier</button>&nbsp;</li>
-            <li><button className="btn btn-primary" onClick={() => handleNextChange()}>Suivant</button>&nbsp;</li>
-            <li><button className="btn btn-primary" onClick={() => handlePreviousChange()}>Précédent</button>&nbsp;</li>
-            <li><button className="btn btn-primary" onClick={() => handlePageChange(nbOfPages)}>Dernier</button>&nbsp;</li>
+            <li><button className="btn btn-primary" onClick={() => handlePageChange(1)}>First</button>&nbsp;</li>
+            <li><button className="btn btn-primary" onClick={() => handleNextChange()}>Next</button>&nbsp;</li>
+            <li><button className="btn btn-primary" onClick={() => handlePreviousChange()}>Previous</button>&nbsp;</li>
+            <li><button className="btn btn-primary" onClick={() => handlePageChange(nbOfPages)}>Last</button>&nbsp;</li>
     </ul>
       <table className="table">
         <thead>

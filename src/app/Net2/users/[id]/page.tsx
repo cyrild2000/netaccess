@@ -29,8 +29,8 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
 
     return (
         <div>
-
-        <h1>{user.firstName} {user.lastName}</h1>
+        <h1>Net 2 - User Profile</h1>
+        <h2>{user.firstName} {user.lastName}</h2>
         <ul>{department.map((dpt, index) => <li key={index}>{dpt.name}</li>)}</ul>
         <h2>Nombre de badges : {badges.length > 0 ? badges.length: "Pas de badge pour l'utilisateur"}</h2>
         <ul>
