@@ -16,11 +16,9 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
         const nextBadges = [...badges];
         nextBadges.map((badge, i) => {
             if(i === index) {
-                console.log("Dans i : " + badge.isLost);
                 if(badge.isLost === true) {
                     Net2Client.getToken().then((data) => {
                         Net2Client.setUserTokenFound(id, user.id, tokenValue, data.access_token).then((result) => {
-                            console.log("Dans setUserTokenFound" + result + ' ' + badge.isLost);
                             badge.isLost = false;
                             setBadges(nextBadges);
                         });
@@ -29,7 +27,6 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
                 } else {
                     Net2Client.getToken().then((data) => {
                         Net2Client.setUserTokenLost(id, user.id, tokenValue, data.access_token).then((result) => {
-                            console.log("Dans setUserTokenLost" + result + ' ' + badge.isLost);
                             badge.isLost = true;
                             setBadges(nextBadges);
                         });
@@ -38,7 +35,6 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
                 }
             }
         });
-        //setBadges(nextBadges); 
     }
 
     useEffect(() => {
