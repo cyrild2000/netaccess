@@ -26,7 +26,7 @@ class Net2HttpClient {
             const response = await fetch(ctx.srv + "/api/v1/users", {
                     method: "GET",
                     headers: {
-                        "Content-Type": "applicationi/json",
+                        "Content-Type": "application/json",
                         "Authorization" : "bearer " + token
                     },
             });
@@ -47,7 +47,7 @@ class Net2HttpClient {
             const response = await fetch(ctx.srv + "/api/v1/users/" + id, {
                     method: "GET",
                     headers: {
-                        "Content-Type": "applicationi/json",
+                        "Content-Type": "application/json",
                         "Authorization" : "bearer " + token
                     },
             });
@@ -68,7 +68,7 @@ class Net2HttpClient {
             const response = await fetch(ctx.srv + "/api/v1/users/" + id + "/tokens", {
                     method: "GET",
                     headers: {
-                        "Content-Type": "applicationi/json",
+                        "Content-Type": "application/json",
                         "Authorization" : "bearer " + token
                     },
             });
@@ -76,6 +76,44 @@ class Net2HttpClient {
                 throw new Error("getUserTokens - Error Fetching data : " + response.statusText);
             }
             return await response.json();
+        } catch(error) {
+            console.log(error);
+        }
+    }
+
+    async setUserTokenLost(badgeId: string, userId: string, tokenId: string, token: string){
+        try {
+            const response = await fetch(ctx.srv + "/api/v1/users/" + userId + "/tokens/" + badgeId, {
+                    method: "PUT",
+                    body: JSON.stringify({id: badgeId, tokenType:"Proxcard", tokenValue:tokenId, isLost:"True"}),
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization" : "bearer " + token
+                    },
+            });
+            if(!response.ok) {
+                throw new Error("setUserTokenLost - Error Fetching data : " + response.statusText);
+            }
+            return response.status;
+        } catch(error) {
+            console.log(error);
+        }
+    }
+
+    async setUserTokenFound(badgeId: string, userId: string, tokenId: string, token: string){
+        try {
+            const response = await fetch(ctx.srv + "/api/v1/users/" + userId + "/tokens/" + badgeId, {
+                    method: "PUT",
+                    body: JSON.stringify({id: badgeId, tokenType:"Proxcard", tokenValue:tokenId, isLost:"False"}),
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization" : "bearer " + token
+                    },
+            });
+            if(!response.ok) {
+                throw new Error("setUserTokenFound - Error Fetching data : " + response.statusText);
+            }
+            return response.status;
         } catch(error) {
             console.log(error);
         }
@@ -89,7 +127,7 @@ class Net2HttpClient {
             const response = await fetch(ctx.srv + "/api/v1/users/" + id + "/departments", {
                     method: "GET",
                     headers: {
-                        "Content-Type": "applicationi/json",
+                        "Content-Type": "application/json",
                         "Authorization" : "bearer " + token
                     },
             });
@@ -110,7 +148,7 @@ class Net2HttpClient {
             const response = await fetch(ctx.srv + "/api/v1/users/" + id + "/doorpermissionset", {
                     method: "GET",
                     headers: {
-                        "Content-Type": "applicationi/json",
+                        "Content-Type": "application/json",
                         "Authorization" : "bearer " + token
                     },
             });
@@ -130,7 +168,7 @@ class Net2HttpClient {
         const response = await fetch(ctx.srv + "/api/v1/departments", {
                 method: "GET",
                 headers: {
-                    "Content-Type": "applicationi/json",
+                    "Content-Type": "application/json",
                     "Authorization" : "bearer " + token
                 },
         });
