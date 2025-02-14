@@ -48,15 +48,21 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
         }, []);
 
     return (
-        <div>
+        <>
+        <div className="row">
         <h1>Net 2 - User Profile</h1>
+        </div>
+        <div className="row">
         <h2>UserId {user.id} {user.firstName} {user.lastName}</h2>
-        <ul>{department.map((dpt, index) => <li key={index}>Department : {dpt.name}</li>)}</ul>
+        </div>
+        <div className="row">
+        <ul className="list-group">{department.map((dpt, index) => <li key={index} className="list-group-item">Department : {dpt.name}</li>)}</ul>
         <h2>Nombre de badges : {badges.length > 0 ? badges.length: "Pas de badge pour l'utilisateur"}</h2>
-        <ul>
+        <ul className="list-group">
             {badges.map((badge, index) => <li key={index} className="list-group-item"><Badge badge={badge} onClick={() => handleBadge(index, badge.id, badge.tokenValue)} /></li>)}
             
         </ul>
         </div>
+        </>
     )
 }
