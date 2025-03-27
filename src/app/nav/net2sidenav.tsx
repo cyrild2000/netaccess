@@ -10,6 +10,9 @@ export default function NetAccessSideNav(){
           <li className="nav-item">
               <a className="nav-link" href="/net2/users">Users</a>
           </li>
+          <li className="nav-item">
+              <a className="nav-link" href="/net2/doors">Doors</a>
+          </li>
       </ul>
     );
   }

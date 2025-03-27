@@ -175,6 +175,40 @@ class Net2HttpClient {
         return await response.json();
     }
 
+    /*
+    * getDoors : retrives all the departments from the service
+    */
+    async getDoors(token: string) {
+        const response = await fetch(ctx.srv + "/api/v1/doors", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization" : "bearer " + token
+                },
+        });
+        return await response.json();
+    }
+
+    async setCard(id: string, tokenId: number, token: string) {
+        try {
+            const response = await fetch(ctx.srv + "/api/v1/users/" + id + "/tokens", {
+                method: "POST",
+                body: JSON.stringify({'tokenType': 'ProxCard', 'tokenValue': tokenId, 'isLost': 'False'}),
+                headers:{
+                    "Content-Type": "application/json",
+                    "Authorization": "bearer " + token,
+                },
+            });
+            if(!response.ok) {
+                return response.text().then(text => {throw new Error(text)})
+            }
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.log("Echec création badge : " + error);
+        }
+    }
+
 }//end of Net2HttpClient
 
 export const Net2Client = new Net2HttpClient();

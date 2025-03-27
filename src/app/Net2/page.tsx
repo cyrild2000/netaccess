@@ -7,6 +7,7 @@ export default function Page(){
         <ul>
             <li><Link href="net2/departments">List Departments</Link></li>
             <li><Link href="net2/users">List Users</Link></li>
+            <li><Link href="net2/users/new">Add New User</Link></li>
         </ul>
         </>
     );

@@ -11,6 +11,7 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
     const [user, setUser] = useState<UserI>({id: '0', firstName: '', lastName:''});
     const [department, setDepartment] = useState<DepartmentI[]>([]);
     const [badges, setBadges] = useState<BadgeI[]>([]);
+    const [csn, setCsn] = useState('');
 
     const handleBadge = (index: number, id: string, tokenValue: string) => {
         const nextBadges = [...badges];
@@ -34,6 +35,30 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
                     
                 }
             }
+        });
+    }
+
+    function convertCSNToNA(isicCsn: string) {
+        var resultat = null;
+        var strnum = null;
+        if(isicCsn.length < 14) {
+            strnum = "0" +  isicCsn;
+            var pnum = strnum.substring(0, 8);
+            resultat = parseInt(pnum, 16);
+        } else {
+            strnum = isicCsn;
+            var pnum = strnum.substring(0, 8);
+            resultat = parseInt(pnum, 16);
+        }
+        return resultat;
+    }
+
+    const handleNew = (csnNumber: string) => {
+        Net2Client.getToken().then((data) => {
+            Net2Client.setCard(user.id, convertCSNToNA(csnNumber), data.access_token).then((response) => {
+                console.log(response);
+                setBadges([...badges, {id: response.id, tokenType: response.tokenType, tokenValue:response.tokenValue, isLost:response.isLost}]);
+            });
         });
     }
 
@@ -62,6 +87,17 @@ export default function Page({ params }: { params: Promise<{ id: string }> }) {
             {badges.map((badge, index) => <li key={index} className="list-group-item"><Badge badge={badge} onClick={() => handleBadge(index, badge.id, badge.tokenValue)} /></li>)}
             
         </ul>
+        </div>
+        <div className="row">
+            <h2>Add a new badge (From ISIC CSN)</h2>
+        </div>
+        <div className="row">
+            <div className="col-auto">
+                <input type="text" className="form-control" value={csn} onChange={e => setCsn(e.target.value)} />
+            </div>
+            <div className="col-auto">
+                <button className="btn btn-success" onClick={() =>handleNew(csn)}>Add +</button>
+            </div>
         </div>
         </>
     )
